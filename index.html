@@ -8,7 +8,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
   <title>Student Register</title>
   <style>
-  
     :root {
       --navy: #1B2A4A;
       --navy-soft: #33456B;
@@ -31,7 +30,7 @@
       padding: 36px 16px 60px;
     }
     .sheet {
-      max-width: 640px;
+      max-width: 760px;
       margin: 0 auto;
       background: var(--paper);
       border: 1px solid var(--rule);
@@ -51,12 +50,7 @@
       margin: 0 0 4px;
       letter-spacing: 0.2px;
     }
-    .letterhead p {
-      margin: 0;
-      color: var(--ink-light);
-      font-size: 13.5px;
-      max-width: 34ch;
-    }
+    .letterhead p { margin: 0; color: var(--ink-light); font-size: 13.5px; max-width: 40ch; }
     .stamp {
       flex-shrink: 0;
       border: 1.5px solid var(--gold);
@@ -78,12 +72,7 @@
       border-bottom: 1px solid var(--rule);
     }
     .row:last-of-type { border-bottom: none; }
-    label {
-      font-size: 13.5px;
-      font-weight: 500;
-      color: var(--navy-soft);
-      padding-top: 9px;
-    }
+    label { font-size: 13.5px; font-weight: 500; color: var(--navy-soft); padding-top: 9px; }
     label .req { color: var(--error); margin-left: 2px; }
     .field { display: flex; flex-direction: column; }
     input, select {
@@ -97,35 +86,12 @@
       outline: none;
       width: 100%;
     }
-    input:focus, select:focus {
-      border-bottom: 1.5px solid var(--gold);
-    }
-    input[readonly] {
-      color: var(--ink-light);
-      background: #F8FAFC;
-      border-bottom-color: transparent;
-      cursor: not-allowed;
-    }
+    input:focus, select:focus { border-bottom: 1.5px solid var(--gold); }
     select { appearance: none; background-image: none; cursor: pointer; }
-    .hint { font-size: 11.5px; color: var(--ink-light); margin-top: 4px; }
-    .field-error {
-      font-size: 12px;
-      color: var(--error);
-      margin-top: 4px;
-      display: none;
-    }
+    .field-error { font-size: 12px; color: var(--error); margin-top: 4px; display: none; }
     .field-error.show { display: block; }
-    .two-col {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0 16px;
-    }
-    .actions {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-top: 26px;
-    }
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 0 16px; }
+    .actions { display: flex; align-items: center; justify-content: space-between; margin-top: 26px; }
     button {
       font-family: 'IBM Plex Sans', sans-serif;
       font-weight: 600;
@@ -139,13 +105,9 @@
     }
     button:hover { background: var(--navy-soft); }
     button:disabled { background: #A7AEBC; cursor: wait; }
-    .entry-count {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 12px;
-      color: var(--ink-light);
-    }
+    .entry-count { font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--ink-light); }
     .banner {
-      margin: 0 32px 20px;
+      margin: 20px 32px;
       padding: 12px 14px;
       font-size: 13.5px;
       border-left: 3px solid var(--success);
@@ -153,101 +115,72 @@
       color: var(--success);
       display: none;
     }
-    .banner.error {
-      border-left-color: var(--error);
-      background: #F7E9E7;
-      color: var(--error);
-    }
+    .banner.error { border-left-color: var(--error); background: #F7E9E7; color: var(--error); }
     .banner.show { display: block; }
-    @media (max-width: 520px) {
-      .row { grid-template-columns: 1fr; }
-      label { padding-top: 0; }
-      .two-col { grid-template-columns: 1fr; }
-    }
-    .share {
-      margin: 0 32px 18px;
-      padding: 10px 12px;
+
+    /* AI scanner */
+    .scanner {
+      margin: 22px 32px 0;
+      padding: 16px;
       background: var(--gold-soft);
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 12.5px;
     }
-    .share span.label { color: var(--navy-soft); font-weight: 500; flex-shrink: 0; }
-    .share code {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 11.5px;
-      color: var(--navy);
-      overflow-x: auto;
-      white-space: nowrap;
-      flex: 1;
-    }
-    .share button {
-      padding: 5px 12px;
-      font-size: 12px;
-      background: var(--navy);
-      flex-shrink: 0;
-    }
-    .register {
-      margin: 34px 32px 0;
-      padding-top: 22px;
-      border-top: 2px solid var(--navy);
-    }
-    .register-head {
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      margin-bottom: 12px;
-    }
-    .register-head h2 {
+    .scanner h2 {
       font-family: 'Source Serif 4', serif;
       font-size: 17px;
       font-weight: 600;
-      margin: 0;
+      margin: 0 0 4px;
     }
-    .register-head .synced {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 10.5px;
-      color: var(--ink-light);
+    .scanner p.sub { margin: 0 0 12px; font-size: 12.5px; color: var(--navy-soft); }
+    .scan-controls { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+    .scan-controls input[type=file] { flex: 1; min-width: 200px; border: none; font-size: 12.5px; }
+    .scan-controls button, .scan-actions button { padding: 9px 16px; font-size: 13px; }
+    .preview { max-width: 100%; max-height: 180px; margin-top: 12px; display: none; border: 1px solid var(--rule); }
+    #scanResult { display: none; margin-top: 16px; background: var(--paper); padding: 14px; }
+    .bulk-meta { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+    .bulk-meta label { padding-top: 0; font-size: 12px; }
+    .bulk-meta select, .bulk-meta input { border: 1px solid var(--rule); padding: 8px; }
+    .scan-table-wrap { overflow-x: auto; }
+    table.scan-table { width: 100%; border-collapse: collapse; font-size: 12.5px; min-width: 620px; }
+    table.scan-table th {
+      text-align: left; font-weight: 500; color: var(--ink-light);
+      padding: 6px 8px 6px 0; border-bottom: 1px solid var(--navy);
     }
+    table.scan-table td { padding: 4px 8px 4px 0; border-bottom: 1px solid var(--rule); }
+    table.scan-table input, table.scan-table select {
+      font-size: 12.5px; padding: 6px 2px;
+    }
+    .btn-x { padding: 3px 9px !important; background: var(--error); font-size: 12px !important; }
+    .scan-actions { display: flex; gap: 10px; margin-top: 12px; align-items: center; flex-wrap: wrap; }
+    .btn-ghost { background: transparent; color: var(--navy); border: 1px solid var(--navy); }
+    .btn-ghost:hover { background: var(--canvas); }
+
+    /* Register */
+    .register { margin: 34px 32px 0; padding-top: 22px; border-top: 2px solid var(--navy); }
+    .register-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 12px; }
+    .register-head h2 { font-family: 'Source Serif 4', serif; font-size: 17px; font-weight: 600; margin: 0; }
+    .register-head .synced { font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; color: var(--ink-light); }
     .register-wrap { overflow-x: auto; padding-bottom: 32px; }
-    table.register-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 12.5px;
-      min-width: 560px;
-    }
+    table.register-table { width: 100%; border-collapse: collapse; font-size: 12.5px; min-width: 620px; }
     table.register-table th {
-      text-align: left;
-      font-weight: 500;
-      color: var(--ink-light);
-      padding: 6px 10px 6px 0;
-      border-bottom: 1px solid var(--navy);
-      white-space: nowrap;
+      text-align: left; font-weight: 500; color: var(--ink-light);
+      padding: 6px 10px 6px 0; border-bottom: 1px solid var(--navy); white-space: nowrap;
     }
-    table.register-table td {
-      padding: 8px 10px 8px 0;
-      border-bottom: 1px solid var(--rule);
-      white-space: nowrap;
-    }
-    table.register-table td.num {
-      font-family: 'IBM Plex Mono', monospace;
-      color: var(--ink-light);
-    }
-    .badge {
-      display: inline-block;
-      padding: 2px 7px;
-      font-size: 10.5px;
-      font-family: 'IBM Plex Mono', monospace;
-    }
+    table.register-table td { padding: 8px 10px 8px 0; border-bottom: 1px solid var(--rule); white-space: nowrap; }
+    table.register-table td.num { font-family: 'IBM Plex Mono', monospace; color: var(--ink-light); }
+    .badge { display: inline-block; padding: 2px 7px; font-size: 10.5px; font-family: 'IBM Plex Mono', monospace; }
     .badge.yes { background: var(--success-bg); color: var(--success); }
     .badge.no { background: #F1EEE6; color: var(--ink-light); }
     .badge.active { background: #E5EDF7; color: var(--navy-soft); }
     .badge.inactive { background: #F1EEE6; color: var(--ink-light); }
-    .empty-row td {
-      color: var(--ink-light);
-      font-style: italic;
-      padding: 14px 0;
+    .empty-row td { color: var(--ink-light); font-style: italic; padding: 14px 0; }
+
+    @media (max-width: 560px) {
+      .row { grid-template-columns: 1fr; }
+      label { padding-top: 0; }
+      .two-col { grid-template-columns: 1fr; }
+      .bulk-meta { grid-template-columns: 1fr; }
+      form, .scanner, .register { margin-left: 16px; margin-right: 16px; }
+      form { padding-left: 0; padding-right: 0; }
     }
   </style>
 </head>
@@ -256,19 +189,55 @@
     <div class="letterhead">
       <div>
         <h1>Student Register</h1>
-        <p>Add one student at a time — each entry is written straight into the Template sheet.</p>
+        <p>Scan a register photo with AI, or add one student at a time. Entries go straight into the Template sheet.</p>
       </div>
       <div class="stamp">NEW&nbsp;ENTRY</div>
     </div>
 
-    <div class="share">
-      <span class="label">Share this form</span>
-      <code id="shareLink"></code>
-      <button type="button" id="copyLinkBtn">Copy link</button>
-    </div>
-
     <div id="banner" class="banner"></div>
 
+    <!-- ============ AI SCANNER ============ -->
+    <div class="scanner">
+      <h2>Scan register image</h2>
+      <p class="sub">AI reads name, phone, date of birth and gender. You choose the school and class, and check the result before saving.</p>
+      <div class="scan-controls">
+        <input type="file" id="regImage" accept="image/*">
+        <button type="button" id="scanBtn">Read with AI</button>
+      </div>
+      <img id="previewImg" class="preview" alt="Register preview">
+
+      <div id="scanResult">
+        <div class="bulk-meta">
+          <div class="field">
+            <label for="bulkSchool">School<span class="req">*</span></label>
+            <select id="bulkSchool"></select>
+          </div>
+          <div class="field">
+            <label for="bulkClass">Class</label>
+            <input id="bulkClass" type="text" placeholder="e.g. 9th">
+          </div>
+          <div class="field">
+            <label for="bulkUdise">UDISE Code</label>
+            <input id="bulkUdise" type="text" placeholder="Enter manually">
+          </div>
+        </div>
+        <div class="scan-table-wrap">
+          <table class="scan-table">
+            <thead>
+              <tr><th>First name</th><th>Last name</th><th>Phone</th><th>Date of birth</th><th>Gender</th><th></th></tr>
+            </thead>
+            <tbody id="scanBody"></tbody>
+          </table>
+        </div>
+        <div class="scan-actions">
+          <button type="button" id="addAllBtn">Add all to register</button>
+          <button type="button" id="addRowBtn" class="btn-ghost">+ Add blank row</button>
+          <button type="button" id="clearScanBtn" class="btn-ghost">Clear</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ MANUAL FORM ============ -->
     <form id="studentForm" novalidate>
       <div class="two-col">
         <div class="row" style="grid-template-columns:1fr;">
@@ -290,9 +259,9 @@
       </div>
 
       <div class="row">
-        <label for="email">Email<span class="req">*</span></label>
+        <label for="email">Email</label>
         <div class="field">
-          <input id="email" name="email" type="email" autocomplete="email" required>
+          <input id="email" name="email" type="email" autocomplete="email">
           <div class="field-error" id="err-email">Enter a valid email address.</div>
         </div>
       </div>
@@ -305,21 +274,47 @@
         </div>
       </div>
 
-      <!-- STATIC HARDCODED SCHOOL NAME -->
       <div class="row">
-        <label for="schoolName">School Name</label>
+        <label for="schoolName">School Name<span class="req">*</span></label>
         <div class="field">
-          <input id="schoolName" name="schoolName" type="text" value="Government Boys High School" readonly>
-          <div class="hint">Fixed for this register.</div>
+          <select id="schoolName" name="schoolName">
+            <option value="">Select school</option>
+            <option>GHS MODEL ALIYA</option>
+            <option>ALIYA BOYS</option>
+            <option>MAHBOOBIA</option>
+            <option>GOSHAMAHAL</option>
+            <option>KUNTA ROAD</option>
+            <option>HIMAYAT NAGAR</option>
+            <option>AZAMPURA NO 1</option>
+            <option>OLD MALAKPET</option>
+            <option>NEHRU MEMORIAL</option>
+            <option>BAGH MOOSARIMO</option>
+            <option>APSR</option>
+            <option>SHAKESHWAR BAZAR</option>
+            <option>JAMIA OSMANIA</option>
+            <option>SVES</option>
+            <option>ZAMISTANPUR</option>
+            <option>MONDA MARKET</option>
+            <option>KALASIGUDA</option>
+            <option>CHADARGHAT 2</option>
+            <option>AMBERPET</option>
+            <option>SRI RAMA</option>
+            <option>BRR</option>
+            <option>SULTAN BAZAR GIRLS</option>
+            <option>MUMTAZ HIGH SCHOOL</option>
+            <option>SRI NALANDA TALENT SCHOOL</option>
+            <option>SRI SIDDHARTHA SCHOOL</option>
+            <option>GHS EISAMIABAZAR</option>
+            <option>GHS SULTAN BAZAR BOYS</option>
+          </select>
+          <div class="field-error" id="err-schoolName">Select a school.</div>
         </div>
       </div>
 
-      <!-- STATIC HARDCODED UDISE CODE -->
       <div class="row">
         <label for="schoolId">UDISE Code</label>
         <div class="field">
-          <input id="schoolId" name="schoolId" type="text" value="36220590191" readonly>
-          <div class="hint">Fixed for this register.</div>
+          <input id="schoolId" name="schoolId" type="text" placeholder="Enter manually">
         </div>
       </div>
 
@@ -375,6 +370,7 @@
       </div>
     </form>
 
+    <!-- ============ LIVE REGISTER ============ -->
     <div class="register">
       <div class="register-head">
         <h2>Register — all entries</h2>
@@ -384,14 +380,8 @@
         <table class="register-table">
           <thead>
             <tr>
-              <th>#</th>
-              <th>Name</th>
-              <th>Email</th>
-              <th>School</th>
-              <th>UDISE Code</th>
-              <th>Class</th>
-              <th>Status</th>
-              <th>Verified</th>
+              <th>#</th><th>Name</th><th>Phone</th><th>School</th>
+              <th>UDISE Code</th><th>Class</th><th>Status</th><th>Verified</th>
             </tr>
           </thead>
           <tbody id="registerBody">
@@ -410,42 +400,37 @@
     var banner = document.getElementById('banner');
     var submitBtn = document.getElementById('submitBtn');
     var entryCount = document.getElementById('entryCount');
-
-    // --- Shareable link row ---
-    var shareLinkEl = document.getElementById('shareLink');
-    var copyLinkBtn = document.getElementById('copyLinkBtn');
-    shareLinkEl.textContent = WEB_APP_URL;
-    copyLinkBtn.addEventListener('click', function () {
-      navigator.clipboard.writeText(WEB_APP_URL).then(function () {
-        copyLinkBtn.textContent = 'Copied';
-        setTimeout(function () { copyLinkBtn.textContent = 'Copy link'; }, 1500);
-      });
-    });
-
-    // --- Live register table, auto-refreshed from the sheet ---
     var registerBody = document.getElementById('registerBody');
     var syncStatus = document.getElementById('syncStatus');
 
     function escapeHtml(str) {
       var div = document.createElement('div');
       div.textContent = str == null ? '' : String(str);
-      return div.innerHTML;
+      return div.innerHTML.replace(/"/g, '&quot;');
     }
 
+    function showBanner(message, isError) {
+      banner.textContent = message;
+      banner.className = 'banner show' + (isError ? ' error' : '');
+      banner.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    /* ---------- Live register table ---------- */
     function renderRegister(rows) {
       rows = rows || [];
       if (!rows.length) {
         registerBody.innerHTML = '<tr class="empty-row"><td colspan="8">No entries yet.</td></tr>';
       } else {
         registerBody.innerHTML = rows.map(function (r) {
+          var st = r.status || 'active';
           return '<tr>' +
-            '<td class="num">' + r.rowNumber + '</td>' +
+            '<td class="num">' + escapeHtml(r.rowNumber) + '</td>' +
             '<td>' + escapeHtml(r.firstName) + ' ' + escapeHtml(r.lastName) + '</td>' +
-            '<td>' + escapeHtml(r.email) + '</td>' +
+            '<td>' + escapeHtml(r.phone) + '</td>' +
             '<td>' + escapeHtml(r.schoolName) + '</td>' +
             '<td>' + escapeHtml(r.schoolId) + '</td>' +
             '<td>' + escapeHtml(r.classGrade) + '</td>' +
-            '<td><span class="badge ' + escapeHtml(r.status || 'active') + '">' + escapeHtml(r.status || 'active') + '</span></td>' +
+            '<td><span class="badge ' + escapeHtml(st) + '">' + escapeHtml(st) + '</span></td>' +
             '<td><span class="badge ' + (r.isVerified === 'yes' ? 'yes' : 'no') + '">' + escapeHtml(r.isVerified || 'no') + '</span></td>' +
             '</tr>';
         }).join('');
@@ -456,27 +441,17 @@
     function loadRegister() {
       syncStatus.textContent = 'syncing…';
       fetch(WEB_APP_URL + '?action=getStudents')
-        .then(function(res) { return res.json(); })
-        .then(function(data) {
-          if (data.success) {
-            renderRegister(data.students);
-          } else {
-            syncStatus.textContent = 'sync failed';
-          }
+        .then(function (res) { return res.json(); })
+        .then(function (data) {
+          if (data.success) renderRegister(data.students);
+          else syncStatus.textContent = 'sync failed';
         })
-        .catch(function(err) {
-          syncStatus.textContent = 'sync failed';
-        });
+        .catch(function () { syncStatus.textContent = 'sync failed'; });
     }
-
     loadRegister();
     setInterval(loadRegister, REFRESH_MS);
 
-    function showBanner(message, isError) {
-      banner.textContent = message;
-      banner.className = 'banner show' + (isError ? ' error' : '');
-    }
-
+    /* ---------- Manual form ---------- */
     function clearErrors() {
       document.querySelectorAll('.field-error').forEach(function (el) { el.classList.remove('show'); });
     }
@@ -485,8 +460,10 @@
       var ok = true;
       if (!data.firstName.trim()) { document.getElementById('err-firstName').classList.add('show'); ok = false; }
       if (!data.lastName.trim()) { document.getElementById('err-lastName').classList.add('show'); ok = false; }
-      var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailPattern.test(data.email.trim())) { document.getElementById('err-email').classList.add('show'); ok = false; }
+      if (!data.schoolName) { document.getElementById('err-schoolName').classList.add('show'); ok = false; }
+      if (data.email.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email.trim())) {
+        document.getElementById('err-email').classList.add('show'); ok = false;
+      }
       if (data.phone && !/^[0-9+\-\s()]{7,15}$/.test(data.phone.trim())) {
         document.getElementById('err-phone').classList.add('show'); ok = false;
       }
@@ -511,7 +488,6 @@
         status: form.status.value,
         isVerified: form.isVerified.value
       };
-
       if (!validate(data)) return;
 
       submitBtn.disabled = true;
@@ -519,36 +495,177 @@
 
       fetch(WEB_APP_URL, {
         method: 'POST',
-        body: JSON.stringify({
-          action: 'addStudent',
-          student: data
+        body: JSON.stringify({ action: 'addStudent', student: data })
+      })
+        .then(function (res) { return res.json(); })
+        .then(function (res) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Add to register';
+          if (res.success) {
+            showBanner(res.message, false);
+            entryCount.textContent = 'Row ' + res.row + ' written';
+            loadRegister();
+            // keep school, UDISE and class so many students can be added quickly
+            var keepSchool = form.schoolName.value, keepId = form.schoolId.value, keepClass = form.classGrade.value;
+            form.reset();
+            form.schoolName.value = keepSchool;
+            form.schoolId.value = keepId;
+            form.classGrade.value = keepClass;
+            form.status.value = 'active';
+            form.isVerified.value = 'no';
+          } else {
+            showBanner(res.error || 'An error occurred.', true);
+          }
         })
-      })
-      .then(function(res) { return res.json(); })
-      .then(function(res) {
-        submitBtn.disabled = false;
-        submitBtn.textContent = 'Add to register';
-        
-        if (res.success) {
-          showBanner(res.message, false);
-          entryCount.textContent = 'Row ' + res.row + ' written';
-          loadRegister();
-          
-          // Reset form but retain hardcoded values
-          form.reset();
-          document.getElementById('schoolName').value = 'Government Boys High School';
-          document.getElementById('schoolId').value = '36220590191';
-          document.getElementById('status').value = 'active';
-          document.getElementById('isVerified').value = 'no';
-        } else {
-          showBanner(res.error || "An error occurred.", true);
-        }
-      })
-      .catch(function(err) {
-        submitBtn.disabled = false;
-        submitBtn.textContent = 'Add to register';
-        showBanner(err.message || String(err), true);
+        .catch(function (err) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Add to register';
+          showBanner(err.message || String(err), true);
+        });
+    });
+
+    /* ---------- AI scanner ---------- */
+    var bulkSchool = document.getElementById('bulkSchool');
+    bulkSchool.innerHTML = document.getElementById('schoolName').innerHTML;
+
+    var regImage = document.getElementById('regImage');
+    var previewImg = document.getElementById('previewImg');
+    var scanBtn = document.getElementById('scanBtn');
+    var scanResult = document.getElementById('scanResult');
+    var scanBody = document.getElementById('scanBody');
+    var addAllBtn = document.getElementById('addAllBtn');
+
+    regImage.addEventListener('change', function () {
+      var f = regImage.files[0];
+      if (!f) { previewImg.style.display = 'none'; return; }
+      previewImg.src = URL.createObjectURL(f);
+      previewImg.style.display = 'block';
+    });
+
+    // Shrink the photo so the upload is fast and stays within Apps Script limits
+    function resizeToBase64(file) {
+      return new Promise(function (resolve, reject) {
+        var img = new Image();
+        img.onload = function () {
+          var max = 1800;
+          var s = Math.min(1, max / Math.max(img.width, img.height));
+          var c = document.createElement('canvas');
+          c.width = Math.round(img.width * s);
+          c.height = Math.round(img.height * s);
+          c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
+          resolve(c.toDataURL('image/jpeg', 0.85).split(',')[1]);
+        };
+        img.onerror = function () { reject(new Error('Could not open this image.')); };
+        img.src = URL.createObjectURL(file);
       });
+    }
+
+    function scanRow(s) {
+      s = s || {};
+      var g = String(s.gender || '').toLowerCase();
+      return '<tr>' +
+        '<td><input class="f" value="' + escapeHtml(s.firstName) + '"></td>' +
+        '<td><input class="l" value="' + escapeHtml(s.lastName) + '"></td>' +
+        '<td><input class="p" value="' + escapeHtml(s.phone) + '"></td>' +
+        '<td><input class="d" type="date" value="' + escapeHtml(s.dob) + '"></td>' +
+        '<td><select class="g">' +
+          '<option value="">-</option>' +
+          '<option value="male"' + (g === 'male' ? ' selected' : '') + '>Male</option>' +
+          '<option value="female"' + (g === 'female' ? ' selected' : '') + '>Female</option>' +
+          '<option value="other"' + (g === 'other' ? ' selected' : '') + '>Other</option>' +
+        '</select></td>' +
+        '<td><button type="button" class="btn-x" onclick="this.closest(\'tr\').remove()">x</button></td>' +
+        '</tr>';
+    }
+
+    scanBtn.addEventListener('click', function () {
+      var file = regImage.files[0];
+      if (!file) { showBanner('Choose a register image first.', true); return; }
+      scanBtn.disabled = true;
+      scanBtn.textContent = 'Reading…';
+
+      resizeToBase64(file)
+        .then(function (b64) {
+          return fetch(WEB_APP_URL, {
+            method: 'POST',
+            body: JSON.stringify({ action: 'extractStudents', image: b64, mimeType: 'image/jpeg' })
+          });
+        })
+        .then(function (r) { return r.json(); })
+        .then(function (res) {
+          scanBtn.disabled = false;
+          scanBtn.textContent = 'Read with AI';
+          if (!res.success) { showBanner(res.error || 'Could not read the image.', true); return; }
+          scanBody.innerHTML = (res.students || []).map(scanRow).join('');
+          scanResult.style.display = 'block';
+          showBanner((res.students || []).length + ' students found. Pick the school, check the rows, then add.', false);
+        })
+        .catch(function (e) {
+          scanBtn.disabled = false;
+          scanBtn.textContent = 'Read with AI';
+          showBanner(e.message || String(e), true);
+        });
+    });
+
+    document.getElementById('addRowBtn').addEventListener('click', function () {
+      scanBody.insertAdjacentHTML('beforeend', scanRow({}));
+      scanResult.style.display = 'block';
+    });
+
+    document.getElementById('clearScanBtn').addEventListener('click', function () {
+      scanBody.innerHTML = '';
+      scanResult.style.display = 'none';
+      regImage.value = '';
+      previewImg.style.display = 'none';
+    });
+
+    addAllBtn.addEventListener('click', function () {
+      var school = bulkSchool.value;
+      if (!school) { showBanner('Select a school for these students.', true); return; }
+
+      var udise = document.getElementById('bulkUdise').value.trim();
+      var cls = document.getElementById('bulkClass').value.trim();
+      var students = [];
+
+      Array.prototype.forEach.call(scanBody.querySelectorAll('tr'), function (tr) {
+        var v = function (c) { return tr.querySelector('.' + c).value.trim(); };
+        var st = {
+          firstName: v('f'), lastName: v('l'), email: '', phone: v('p'),
+          schoolName: school, schoolId: udise, classGrade: cls,
+          dob: v('d'), gender: v('g'), status: 'active', isVerified: 'no'
+        };
+        if (st.firstName || st.lastName) students.push(st);
+      });
+
+      if (!students.length) { showBanner('No students to add.', true); return; }
+
+      addAllBtn.disabled = true;
+      addAllBtn.textContent = 'Adding ' + students.length + '…';
+
+      fetch(WEB_APP_URL, {
+        method: 'POST',
+        body: JSON.stringify({ action: 'addStudents', students: students })
+      })
+        .then(function (r) { return r.json(); })
+        .then(function (res) {
+          addAllBtn.disabled = false;
+          addAllBtn.textContent = 'Add all to register';
+          if (res.success) {
+            showBanner(res.message, false);
+            scanBody.innerHTML = '';
+            scanResult.style.display = 'none';
+            regImage.value = '';
+            previewImg.style.display = 'none';
+            loadRegister();
+          } else {
+            showBanner(res.error || 'Could not add students.', true);
+          }
+        })
+        .catch(function (e) {
+          addAllBtn.disabled = false;
+          addAllBtn.textContent = 'Add all to register';
+          showBanner(e.message || String(e), true);
+        });
     });
   </script>
 </body>
